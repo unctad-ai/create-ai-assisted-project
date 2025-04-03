@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.3...v0.1.4) (2025-04-03)
+
+
+### Code Refactoring
+
+* standardize AI integration with AI_ASSISTANT.md ([8e87c20](https://github.com/unctad-ai/create-ai-assisted-project/commit/8e87c20f467358927b86808e52c37fa2eaed4285))
+
 ### [0.1.3](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.2...v0.1.3) (2025-04-03)
 
 

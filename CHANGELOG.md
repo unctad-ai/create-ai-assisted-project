@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.2...v0.1.3) (2025-04-03)
+
+
+### Documentation
+
+* reorganize documentation structure into project-docs ([9487578](https://github.com/unctad-ai/create-ai-assisted-project/commit/9487578988a43533c791e421b9e57fd94256f6ea))
+
 ### [0.1.2](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.1...v0.1.2) (2025-04-03)
 
 

@@ -1,101 +1,98 @@
 # Getting Started
 
-This guide will help you start using the AI-assisted development workflow with a new project created from this template.
+This guide provides a streamlined approach to AI-assisted development.
 
-## First-Time Setup
+## Quick Start
 
-After creating your project with `@unctad-ai/create-ai-assisted-project`, follow these steps:
+After creating your project with `npx @unctad-ai/create-ai-assisted-project my-project`:
 
-1. **Explore Project Structure**
+1. **Install dependencies** (if not done during setup)
    ```bash
-   ls -la
-   ```
-   - Note the `project-docs/`, `memory.md`, and `todo.md` files
-
-2. **Install Dependencies** (if not done during project creation)
-   ```bash
+   cd my-project
    npm install
    ```
 
-3. **Start Development Server**
+2. **Start your development server**
    ```bash
    npm run dev
    ```
 
-## Initial Planning Phase
+## Two-Step Development Process
 
-Before writing any code, work with your AI assistant to define your project:
+### Step 1: Planning Phase
 
-1. **Create Project Brief**
-   ```
-   Help me create a project brief. Let's fill out project-docs/process/PROJECT_BRIEF.md with the requirements for our [type of application].
-   ```
+**First, instruct your AI coding assistant to read the guidelines:**
 
-2. **Develop Technical Plan**
-   ```
-   Based on our PROJECT_BRIEF.md, let's create a technical implementation plan following project-docs/technical/TECHNICAL_PLANNING.md.
-   ```
+```
+Please read the AI_ASSISTANT.md file in this project to understand how to work with this codebase.
+```
 
-3. **Create Task List**
-   ```
-   Based on the technical plan, let's update todo.md with specific tasks organized by priority.
-   ```
+**Then, ask it to help plan the project:**
 
-4. **Initialize Memory File**
-   ```
-   Let's update memory.md with our initial project context including architecture and technology choices.
-   ```
+```
+Help me plan this project: [brief description of your project idea].
 
-## Development Workflow
+Let's collaborate to define requirements, architecture, and create a task list.
+```
 
-For each task in your todo.md file:
+The AI will guide you through:
+- Creating a project brief in project-docs/process/PROJECT_BRIEF.md
+- Designing the technical architecture in project-docs/technical/ files
+- Breaking down tasks and adding them to todo.md
+- Setting up the initial project state in memory.md
+- Updating all required documentation files
 
-1. **Start New Chat Session** with your AI assistant
+IMPORTANT: The AI will persist all this information in your project's files automatically, creating a permanent reference for future development.
 
-2. **Use Standard Prompt**
-   ```
-   Continue working on the project. Follow the development guidelines in project-docs/guidelines/development.md, and remember everything in memory.md.
+### Step 2: Implementation Phase
 
-   Our current task from todo.md is:
-   [Copy specific task here]
+**For each development cycle, simply ask:**
 
-   Let's proceed with [testing/implementing/refactoring].
-   ```
+```
+Please read the AI_ASSISTANT.md file if you haven't already.
 
-3. **Complete the Task** following test-driven development principles
+Let's implement the next task for this project. Use the documentation in project-docs/
+and follow the implementation guidelines.
+```
 
-4. **Update Documentation**
-   - Mark task complete in todo.md with date
-   - Update memory.md with project state changes
-   - Commit changes with descriptive message
+The AI will:
+- Consult project-docs/ for context
+- Read memory.md for project state
+- Select the next logical task from todo.md
+- Guide you through implementation with TDD
+- Update documentation as you complete work
 
-5. **Start a New Chat** for the next task
+## Project Organization
 
-## Template-Specific Setup
+- **project-docs/** - Planning and process documentation
+- **memory.md** - Current project state (updated after each session)
+- **todo.md** - Task tracking and priorities
+- **CLAUDE.md** - Technical standards and guidelines
 
-### React TypeScript Template
+## Additional Commands
 
-- Tailwind CSS is pre-configured
-- shadcn/ui components available in `src/components/ui/`
-- Use `npm run dev` to start development server
+For specific implementation needs:
 
-### Next.js Template
+- **Implement specific task:**
+  ```
+  Let's implement: [specific task from todo.md]
+  ```
 
-- App Router configured in `src/app/`
-- API routes can be added in `src/app/api/`
-- Use `npm run dev` to start development server
+- **Review and improve code:**
+  ```
+  Review this implementation: [specific component/feature]
+  ```
 
-## Troubleshooting
+- **Add a new feature:**
+  ```
+  Let's add a new feature: [feature description]
+  ```
 
-### Common Issues
+## Template Features
 
-- **LLM Losing Context**: Ensure memory.md is kept up-to-date
-- **Unclear Tasks**: Break down vague tasks into specific, actionable items
-- **Testing Issues**: Refer to CLAUDE.md for testing conventions
-
-### Getting Help
-
-For questions or problems with the template:
-- Review relevant documentation in the `project-docs/` directory
-- Check the GitHub repository for issues and solutions
-- Reach out to the community for assistance
+This template includes:
+- TypeScript configuration
+- Testing setup
+- Modern UI components with shadcn/ui + Tailwind CSS
+- Optimized folder structure
+- Comprehensive AI workflow tools

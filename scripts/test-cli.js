@@ -60,7 +60,7 @@ try {
     'project-docs/technical/TECHNICAL_PLANNING.md',
     'memory.md',
     'todo.md',
-    'CLAUDE.md',
+    'AI_ASSISTANT.md',
     '.gitignore'
   ];
 

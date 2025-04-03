@@ -30,110 +30,63 @@ npx @unctad-ai/create-ai-assisted-project@latest my-app --template next-app
 - `next-app` - Next.js application (App Router) + TypeScript + shadcn/ui (default)
 - `react-ts` - React with TypeScript + shadcn/ui
 
-## Working with AI (Quick Guide)
+## Working with AI
 
-1. **Setup Your Project**
-   ```bash
-   npx @unctad-ai/create-ai-assisted-project@latest my-app
-   cd my-app
-   ```
-
-2. **Understand Key Files**
-   - `memory.md` - Project context for the AI assistant
-   - `todo.md` - Task tracking (update after each task)
-   - `CLAUDE.md` - Coding standards and technical guidelines
-   - `project-docs/` - Comprehensive project documentation:
-     - `project-docs/guidelines/` - Development and review standards
-     - `project-docs/process/` - AI workflow methodologies
-     - `project-docs/technical/` - Architecture and planning guides
-
-3. **Project Planning Phase** (Critical First Step)
-   - Work with your AI assistant to define the project:
-     ```
-     Help me create a project brief for [project description]. 
-     Let's fill out the project-docs/process/PROJECT_BRIEF.md template with our requirements.
-     ```
-   - Create a technical implementation plan:
-     ```
-     Based on our PROJECT_BRIEF.md, let's create a technical implementation plan
-     following the guidelines in project-docs/technical/TECHNICAL_PLANNING.md. Please help me
-     think through the data models, APIs, and component structure.
-     ```
-   - Break down the plan into tasks:
-     ```
-     Now that we have our technical plan, let's create a task list in todo.md,
-     organized by priority and dependencies. Each task should have clear
-     acceptance criteria.
-     ```
-   - Initialize the memory file:
-     ```
-     Let's update memory.md with our initial project state, including our chosen
-     architecture, key technologies, and implementation approach.
-     ```
-
-4. **Start Development**
-   - Choose a task from `todo.md`
-   - Start a new AI chat session
-   - Use this consistent prompt format:
-     ```
-     Continue working on the project. Follow the development guidelines in 
-     project-docs/guidelines/development.md, and remember everything in memory.md.
-
-     Our current task from todo.md is:
-     [Copy specific task here]
-
-     Let's proceed with [writing tests/implementing/etc].
-     ```
-
-5. **Complete Tasks**
-   - Update `todo.md` when tasks are complete
-   - Update `memory.md` with important changes
-   - Use one chat session per task
-   - Commit changes with descriptive messages
-
-6. **AI Review Process**
-   - Regularly review your work with the AI using:
-     ```
-     Review the current state of the [feature/component]. 
-     Follow the guidelines in project-docs/guidelines/review.md.
-     
-     We've implemented:
-     - [List of completed elements]
-     
-     Check the code quality, test coverage, and documentation completeness.
-     ```
-
-7. **Get Started with Documentation**
-   - Read `project-docs/GETTING_STARTED.md` for quick onboarding
-   - Follow `project-docs/process/DEVELOPMENT_PROCESS.md` for detailed steps
-   - Use `project-docs/process/AI_PROMPT_TEMPLATE.md` for standard prompt formats
-
-For more details, see [project-docs/process/DEVELOPMENT_PROCESS.md](project-docs/process/DEVELOPMENT_PROCESS.md)
-
-## Command Line Options
+### Step 1: Set Up Your Project
 
 ```bash
-Usage: @unctad-ai/create-ai-assisted-project [project-directory] [options]
-
-Options:
-  -V, --version                      Output version
-  --template <n>                     Select project template
-    [next-app, react-ts]
-  
-  --install                          Install dependencies (default: true)
-  
-  --pm <package-manager>             Choose package manager
-    [npm, yarn, pnpm, bun]
-  
-  -h, --help                         Display help
-
-Examples:
-  # Create a Next.js App Router project (default)
-  npx @unctad-ai/create-ai-assisted-project@latest my-app
-
-  # Create a React TypeScript project with shadcn/ui
-  npx @unctad-ai/create-ai-assisted-project@latest my-react-app --template react-ts
+npx @unctad-ai/create-ai-assisted-project@latest my-app
+cd my-app
+npm install
 ```
+
+### Step 2: Plan Your Project
+
+First, instruct your AI coding assistant to read the guidelines:
+
+```
+Please read the AI_ASSISTANT.md file in this project to understand how to work with this codebase.
+```
+
+Then, ask it to help plan your project:
+
+```
+Help me plan this project: [brief description of your project idea].
+
+Let's collaborate to define requirements, architecture, and create a task list.
+```
+
+The AI will guide you through creating project requirements, architecture, and tasks - writing all documentation directly to your project files in project-docs/ and creating your initial todo.md and memory.md files.
+
+### Step 3: Implement
+
+For each development cycle, ask:
+
+```
+Please read the AI_ASSISTANT.md file if you haven't already.
+
+Let's implement the next task for this project. Use the documentation in project-docs/
+and follow the implementation guidelines.
+```
+
+The AI will consult your project documentation, select the next logical task, and guide you through implementation.
+
+### Additional Commands
+
+- **Implement specific task:**
+  ```
+  Let's implement: [specific task from todo.md]
+  ```
+
+- **Review code:**
+  ```
+  Review this implementation: [component/feature]
+  ```
+
+- **Add feature:**
+  ```
+  Let's add a new feature: [feature description]
+  ```
 
 ## Project Structure
 
@@ -164,20 +117,41 @@ my-app/
 ├── memory.md              # Project memory file for AI context
 ├── todo.md                # Task tracking and management
 ├── package.json           # Project configuration
-└── CLAUDE.md              # AI coding agent guidelines
+└── AI_ASSISTANT.md        # AI coding agent guidelines
 ```
 
-For specific architecture recommendations, see [project-docs/technical/FOLDER_STRUCTURE.md](project-docs/technical/FOLDER_STRUCTURE.md)
+## Command Line Options
+
+```bash
+Usage: @unctad-ai/create-ai-assisted-project [project-directory] [options]
+
+Options:
+  -V, --version                      Output version
+  --template <n>                     Select project template
+    [next-app, react-ts]
+  
+  --install                          Install dependencies (default: true)
+  
+  --pm <package-manager>             Choose package manager
+    [npm, yarn, pnpm, bun]
+  
+  -h, --help                         Display help
+
+Examples:
+  # Create a Next.js App Router project (default)
+  npx @unctad-ai/create-ai-assisted-project@latest my-app
+
+  # Create a React TypeScript project with shadcn/ui
+  npx @unctad-ai/create-ai-assisted-project@latest my-react-app --template react-ts
+```
 
 ## Best Practices
 
-- **One Task Per Session**: Complete one task before starting another
-- **Memory Management**: Update memory.md after each completed task
-- **TDD Approach**: Write tests before implementation
-- **Zero Tolerance**: Fix all warnings and errors before completing tasks
-- **Clear Communication**: Use standard prompts from AI_PROMPT_TEMPLATE.md
-- **Continuous Review**: Regularly review code with AI following review.md guidelines
-- **Context Management**: Keep memory.md updated with all key decisions
+- **Simplified Prompts**: Keep AI instructions clear and concise
+- **Memory Management**: Let AI update memory.md after each session
+- **TDD Approach**: Follow test-driven development principles
+- **One Task Focus**: Complete one focused task per AI session
+- **Documentation First**: Let AI maintain documentation as you work
 
 ## License
 

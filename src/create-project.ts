@@ -167,12 +167,12 @@ export async function createProject(
     }
     // More templates can be added here with their specific guidance
     
-    // Copy and process CLAUDE.md with template variables
-    const claudeMdPath = path.join(commonDir, 'CLAUDE.md');
-    let claudeMdContent = await readFile(claudeMdPath);
-    claudeMdContent = claudeMdContent
+    // Copy and process AI_ASSISTANT.md with template variables
+    const aiAssistantPath = path.join(commonDir, 'AI_ASSISTANT.md');
+    let aiAssistantContent = await readFile(aiAssistantPath);
+    aiAssistantContent = aiAssistantContent
       .replace(/{{LANGUAGE_FRAMEWORK_GUIDANCE}}/g, languageFrameworkGuidance);
-    await writeFile(path.join(targetDir, 'CLAUDE.md'), claudeMdContent);
+    await writeFile(path.join(targetDir, 'AI_ASSISTANT.md'), aiAssistantContent);
     
     // Copy and process memory.md with template variables
     const memoryMdPath = path.join(commonDir, 'memory.md');

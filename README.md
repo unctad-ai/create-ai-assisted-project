@@ -34,7 +34,7 @@ npx @unctad-ai/create-ai-assisted-project@latest my-app --template next-app
 
 1. **Setup Your Project**
    ```bash
-   npx create-ai-project@latest my-app
+   npx @unctad-ai/create-ai-assisted-project@latest my-app
    cd my-app
    ```
 
@@ -42,19 +42,21 @@ npx @unctad-ai/create-ai-assisted-project@latest my-app --template next-app
    - `memory.md` - Project context for the AI assistant
    - `todo.md` - Task tracking (update after each task)
    - `CLAUDE.md` - Coding standards and technical guidelines
-   - `core-workflow/` - Development process guidelines
-   - `docs/` - Detailed documentation
+   - `project-docs/` - Comprehensive project documentation:
+     - `project-docs/guidelines/` - Development and review standards
+     - `project-docs/process/` - AI workflow methodologies
+     - `project-docs/technical/` - Architecture and planning guides
 
 3. **Project Planning Phase** (Critical First Step)
    - Work with your AI assistant to define the project:
      ```
      Help me create a project brief for [project description]. 
-     Let's fill out the docs/PROJECT_BRIEF.md template with our requirements.
+     Let's fill out the project-docs/process/PROJECT_BRIEF.md template with our requirements.
      ```
    - Create a technical implementation plan:
      ```
      Based on our PROJECT_BRIEF.md, let's create a technical implementation plan
-     following the guidelines in docs/TECHNICAL_PLANNING.md. Please help me
+     following the guidelines in project-docs/technical/TECHNICAL_PLANNING.md. Please help me
      think through the data models, APIs, and component structure.
      ```
    - Break down the plan into tasks:
@@ -75,7 +77,7 @@ npx @unctad-ai/create-ai-assisted-project@latest my-app --template next-app
    - Use this consistent prompt format:
      ```
      Continue working on the project. Follow the development guidelines in 
-     core-workflow/development-guidelines.md, and remember everything in memory.md.
+     project-docs/guidelines/development.md, and remember everything in memory.md.
 
      Our current task from todo.md is:
      [Copy specific task here]
@@ -89,12 +91,24 @@ npx @unctad-ai/create-ai-assisted-project@latest my-app --template next-app
    - Use one chat session per task
    - Commit changes with descriptive messages
 
-6. **Get Started with Documentation**
-   - Read `docs/WORKFLOW.md` for a high-level overview
-   - Follow `docs/DEVELOPMENT_PROCESS.md` for detailed steps
-   - Use `docs/AI_PROMPT_TEMPLATE.md` for standard prompt formats
+6. **AI Review Process**
+   - Regularly review your work with the AI using:
+     ```
+     Review the current state of the [feature/component]. 
+     Follow the guidelines in project-docs/guidelines/review.md.
+     
+     We've implemented:
+     - [List of completed elements]
+     
+     Check the code quality, test coverage, and documentation completeness.
+     ```
 
-For more details, see [docs/DEVELOPMENT_PROCESS.md](docs/DEVELOPMENT_PROCESS.md)
+7. **Get Started with Documentation**
+   - Read `project-docs/GETTING_STARTED.md` for quick onboarding
+   - Follow `project-docs/process/DEVELOPMENT_PROCESS.md` for detailed steps
+   - Use `project-docs/process/AI_PROMPT_TEMPLATE.md` for standard prompt formats
+
+For more details, see [project-docs/process/DEVELOPMENT_PROCESS.md](project-docs/process/DEVELOPMENT_PROCESS.md)
 
 ## Command Line Options
 
@@ -135,20 +149,25 @@ my-app/
 │   ├── types/             # TypeScript type definitions
 │   ├── utils/             # Helper functions
 │   └── api/               # API client and related functionality
-├── core-workflow/         # AI workflow configuration
-│   ├── development-guidelines.md
-│   └── review-guidelines.md
-├── docs/                  # Detailed documentation
-│   ├── WORKFLOW.md        # Overview of development process
-│   ├── DEVELOPMENT_PROCESS.md # Detailed workflow steps
-│   └── AI_PROMPT_TEMPLATE.md # Standard AI prompts
+├── project-docs/          # Project documentation
+│   ├── GETTING_STARTED.md # Quick onboarding guide
+│   ├── guidelines/        # Development standards
+│   │   ├── development.md # Development guidelines
+│   │   └── review.md      # Review process
+│   ├── process/           # Process documentation
+│   │   ├── WORKFLOW.md    # Overview of development process
+│   │   ├── DEVELOPMENT_PROCESS.md # Detailed workflow steps
+│   │   └── AI_PROMPT_TEMPLATE.md # Standard AI prompts
+│   └── technical/         # Technical documentation
+│       ├── ARCHITECTURE.md # Architectural decisions
+│       └── TECHNICAL_PLANNING.md # Implementation planning
 ├── memory.md              # Project memory file for AI context
 ├── todo.md                # Task tracking and management
 ├── package.json           # Project configuration
 └── CLAUDE.md              # AI coding agent guidelines
 ```
 
-For specific architecture recommendations, see [docs/FOLDER_STRUCTURE.md](docs/FOLDER_STRUCTURE.md)
+For specific architecture recommendations, see [project-docs/technical/FOLDER_STRUCTURE.md](project-docs/technical/FOLDER_STRUCTURE.md)
 
 ## Best Practices
 
@@ -157,10 +176,8 @@ For specific architecture recommendations, see [docs/FOLDER_STRUCTURE.md](docs/F
 - **TDD Approach**: Write tests before implementation
 - **Zero Tolerance**: Fix all warnings and errors before completing tasks
 - **Clear Communication**: Use standard prompts from AI_PROMPT_TEMPLATE.md
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+- **Continuous Review**: Regularly review code with AI following review.md guidelines
+- **Context Management**: Keep memory.md updated with all key decisions
 
 ## License
 

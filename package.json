@@ -1,6 +1,6 @@
 {
   "name": "@unctad-ai/create-ai-assisted-project",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "CLI tool for creating project templates with built-in AI-assisted development workflow",
   "type": "module",
   "bin": {

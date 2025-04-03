@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.5...v0.1.6) (2025-04-03)
+
+
+### Features
+
+* add .gitignore files for Next.js and React TypeScript templates ([aeee3c3](https://github.com/unctad-ai/create-ai-assisted-project/commit/aeee3c3477d24ae9116a5bba918ec6a8cb1927a7))
+
 ### [0.1.5](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.4...v0.1.5) (2025-04-03)
 
 

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.1...v0.1.2) (2025-04-03)
+
+
+### Bug Fixes
+
+* **release:** update release action to use CHANGELOG.md for release notes ([4e60083](https://github.com/unctad-ai/create-ai-assisted-project/commit/4e600832323d4114de3b481108c9212caa9e3f54))
+* update README and package.json for project documentation and license changes ([c5a0430](https://github.com/unctad-ai/create-ai-assisted-project/commit/c5a04306e3fea9f41f538e209b33146afd439d16))
+
 ### [0.1.1](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.0...v0.1.1) (2025-04-03)
 
 

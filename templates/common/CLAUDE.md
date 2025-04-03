@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to the AI coding agent when working with code in this repository.
 
 ## AI-Assisted Development Workflow
 - Test-driven development approach
@@ -11,16 +11,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Git usage is mandatory
 
 ## Development Process
-- Read docs/DEVELOPMENT_PROCESS.md for workflow details
+- Read project-docs/process/DEVELOPMENT_PROCESS.md for workflow details
 - Follow test-driven development practices
 - Keep code quality high with proper error handling
 - Maintain zero tolerance for warnings
 - Ensure proper documentation
 
 ## Project Organization
-- Follow the architecture defined in docs/ARCHITECTURE.md
-- core-workflow/ - Development and review guidelines
-- docs/ - Project documentation
+- Follow the architecture defined in project-docs/technical/ARCHITECTURE.md
+- project-docs/ - Project documentation
+- project-docs/guidelines/ - Development and review guidelines
 - memory.md - Project context and state
 - todo.md - Task management
 - CLAUDE.md - AI coding agent guidelines

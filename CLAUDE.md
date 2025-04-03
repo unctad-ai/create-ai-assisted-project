@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agent when working with code in this repository.
 
 ## Build Commands
 - Build: `npm run build` (Next.js/React build)
@@ -47,5 +47,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Structure
 - src/ - Source code with well-organized folders
-- core-workflow/ - Development guidelines
+- memory.md - Project context and state
+- todo.md - Task management
 - CLAUDE.md - AI coding agent guidelines

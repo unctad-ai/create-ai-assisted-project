@@ -11,12 +11,12 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold mb-4">Project Resources</h2>
           <ul className="space-y-2">
             <li>
-              <a href="/core-workflow/development-guidelines.md" className="text-blue-500 hover:underline">
+              <a href="/project-docs/guidelines/development.md" className="text-blue-500 hover:underline">
                 Development Guidelines
               </a>
             </li>
             <li>
-              <a href="/core-workflow/review-guidelines.md" className="text-blue-500 hover:underline">
+              <a href="/project-docs/guidelines/review.md" className="text-blue-500 hover:underline">
                 Review Guidelines
               </a>
             </li>

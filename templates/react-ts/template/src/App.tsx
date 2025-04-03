@@ -25,12 +25,12 @@ function App() {
           <h2>Project Resources</h2>
           <ul>
             <li>
-              <a href="/core-workflow/development-guidelines.md">
+              <a href="/project-docs/guidelines/development.md">
                 Development Guidelines
               </a>
             </li>
             <li>
-              <a href="/core-workflow/review-guidelines.md">
+              <a href="/project-docs/guidelines/review.md">
                 Review Guidelines
               </a>
             </li>

@@ -5,7 +5,7 @@ This file tracks tasks for AI-assisted development. AI agents should update this
 ## Active Tasks
 
 ### High Priority
-- [ ] Define project requirements in PROJECT_BRIEF.md
+- [ ] Define project requirements in project-docs/process/PROJECT_BRIEF.md
 - [ ] Create technical implementation plan
 - [ ] Configure development environment
 
@@ -25,4 +25,4 @@ This file tracks tasks for AI-assisted development. AI agents should update this
 - Update this file by marking tasks as completed [X] when done
 - Move tasks between sections as their status changes
 - Each task should have clear acceptance criteria
-- See docs/TASK_GUIDELINES.md for guidance on creating effective tasks
+- See project-docs/process/TASK_GUIDELINES.md for guidance on creating effective tasks

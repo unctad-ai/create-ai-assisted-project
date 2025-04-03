@@ -6,15 +6,21 @@ This document outlines the recommended folder structure for projects created wit
 
 ```
 project-root/
-├── core-workflow/           # Development process guidelines
-│   ├── development-guidelines.md
-│   └── review-guidelines.md
-├── project-docs/process/                    # Project documentation
-│   ├── ARCHITECTURE.md      # Architecture decisions
-│   ├── DEVELOPMENT_PROCESS.md # Development workflow
-│   ├── PROJECT_BRIEF.md     # Project requirements
-│   ├── TECHNICAL_PLAN.md    # Technical implementation details
-│   └── ...
+├── project-docs/            # Project documentation
+│   ├── GETTING_STARTED.md   # Quick onboarding guide
+│   ├── guidelines/          # Development process guidelines
+│   │   ├── development.md
+│   │   └── review.md
+│   ├── process/             # Workflow documentation
+│   │   ├── DEVELOPMENT_PROCESS.md # Development workflow
+│   │   ├── PROJECT_BRIEF.md     # Project requirements
+│   │   ├── WORKFLOW.md          # Overall workflow overview
+│   │   └── AI_PROMPT_TEMPLATE.md # Standard AI prompts
+│   └── technical/           # Technical documentation
+│       ├── ARCHITECTURE.md    # Architecture decisions
+│       ├── TECHNICAL_PLAN.md  # Technical implementation details
+│       ├── TECHNICAL_PLANNING.md # Planning guidelines
+│       └── FOLDER_STRUCTURE.md # This file
 ├── memory.md                # Project state tracking for AI
 ├── todo.md                  # Task tracking with priorities
 ├── CLAUDE.md                # Guidelines for AI assistants

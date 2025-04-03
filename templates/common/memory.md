@@ -21,6 +21,6 @@ This file is used to track the ongoing state of the project for AI-assisted deve
 
 ## Next Steps
 
-- Define project requirements in docs/PROJECT_BRIEF.md
-- Create technical implementation plan in docs/TECHNICAL_PLAN.md
+- Define project requirements in project-docs/process/PROJECT_BRIEF.md
+- Create technical implementation plan in project-docs/technical/TECHNICAL_PLAN.md
 - Break down implementation into specific tasks in todo.md

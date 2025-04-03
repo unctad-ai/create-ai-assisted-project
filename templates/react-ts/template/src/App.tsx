@@ -22,25 +22,35 @@ function App() {
         </div>
 
         <div className="resources">
-          <h2>Project Resources</h2>
-          <ul>
-            <li>
-              <a href="/project-docs/guidelines/development.md">
-                Development Guidelines
-              </a>
-            </li>
-            <li>
-              <a href="/project-docs/guidelines/review.md">
-                Review Guidelines
-              </a>
-            </li>
-            <li>
-              <a href="/memory.md">Project Memory</a>
-            </li>
-            <li>
-              <a href="/todo.md">Todo List</a>
-            </li>
-          </ul>
+          <h2>Getting Started with AI</h2>
+          <div className="guide">
+            <ol>
+              <li>
+                <strong>Open your AI coding assistant</strong> (Claude Code, Windsurf, Cursor, etc.)
+              </li>
+              <li>
+                <strong>Ask it to read guidelines:</strong>
+                <code>Please read the AI_ASSISTANT.md file in this project</code>
+              </li>
+              <li>
+                <strong>Start planning:</strong>
+                <code>Help me plan this project: [your description]</code>
+              </li>
+              <li>
+                <strong>Begin implementation:</strong>
+                <code>Let's implement the next task</code>
+              </li>
+            </ol>
+          </div>
+          <div className="key-files">
+            <h3>Project Resources</h3>
+            <ul>
+              <li><strong>AI_ASSISTANT.md</strong> - AI guidelines</li>
+              <li><strong>project-docs/</strong> - Documentation</li>
+              <li><strong>memory.md</strong> - Project state</li>
+              <li><strong>todo.md</strong> - Task tracking</li>
+            </ul>
+          </div>
         </div>
       </main>
     </div>

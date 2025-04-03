@@ -8,34 +8,51 @@ export default function HomePage() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
         <div className="border rounded-lg p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-4">Project Resources</h2>
-          <ul className="space-y-2">
+          <h2 className="text-2xl font-semibold mb-4">Getting Started</h2>
+          <ol className="space-y-3 list-decimal pl-5">
             <li>
-              <a href="/project-docs/guidelines/development.md" className="text-blue-500 hover:underline">
-                Development Guidelines
-              </a>
+              <strong>Open your AI coding assistant</strong> (Claude Code, Windsurf, Cursor, etc.)
             </li>
             <li>
-              <a href="/project-docs/guidelines/review.md" className="text-blue-500 hover:underline">
-                Review Guidelines
-              </a>
+              <strong>Ask it to read project guidelines:</strong><br />
+              <code className="bg-gray-100 p-1 rounded block mt-1 text-sm">
+                Please read the AI_ASSISTANT.md file in this project
+              </code>
             </li>
             <li>
-              <a href="/memory.md" className="text-blue-500 hover:underline">Project Memory</a>
+              <strong>Start planning your project:</strong><br />
+              <code className="bg-gray-100 p-1 rounded block mt-1 text-sm">
+                Help me plan this project: [your description]
+              </code>
             </li>
             <li>
-              <a href="/todo.md" className="text-blue-500 hover:underline">Todo List</a>
+              <strong>Begin implementation:</strong><br />
+              <code className="bg-gray-100 p-1 rounded block mt-1 text-sm">
+                Let's implement the next task
+              </code>
             </li>
-          </ul>
+          </ol>
         </div>
         
         <div className="border rounded-lg p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-4">Getting Started</h2>
-          <p className="mb-4">
-            This project uses Next.js with App Router, TypeScript, shadcn/ui, and Tailwind CSS.
-          </p>
-          <p>
-            Edit <code className="bg-gray-100 p-1 rounded">src/app/page.tsx</code> to get started.
+          <h2 className="text-2xl font-semibold mb-4">Project Resources</h2>
+          <p className="mb-3">Key files for AI-assisted development:</p>
+          <ul className="space-y-2 list-disc pl-5">
+            <li>
+              <strong className="font-medium">AI_ASSISTANT.md</strong> - Guidelines for AI tools
+            </li>
+            <li>
+              <strong className="font-medium">project-docs/</strong> - Project documentation
+            </li>
+            <li>
+              <strong className="font-medium">memory.md</strong> - Project state tracker
+            </li>
+            <li>
+              <strong className="font-medium">todo.md</strong> - Development tasks
+            </li>
+          </ul>
+          <p className="mt-4 text-sm text-gray-600">
+            This project uses Next.js with App Router, TypeScript, and Tailwind CSS.
           </p>
         </div>
       </div>

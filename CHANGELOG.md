@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.6...v0.1.7) (2025-04-04)
+
+
+### Code Refactoring
+
+* remove redundant .gitignore file creation in project initialization ([3b70cb5](https://github.com/unctad-ai/create-ai-assisted-project/commit/3b70cb5d354dbcf1a613a5b64777bf4527651ab0))
+* simplify project folder creation by removing unnecessary README files ([c8a8b04](https://github.com/unctad-ai/create-ai-assisted-project/commit/c8a8b04a13e0c7e112399532444e5e5231189000))
+
 ### [0.1.6](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.5...v0.1.6) (2025-04-03)
 
 

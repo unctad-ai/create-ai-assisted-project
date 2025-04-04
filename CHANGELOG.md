@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.8...v0.1.9) (2025-04-04)
+
+
+### Code Refactoring
+
+* clarify documentation update requirements in implementation process ([d4646ff](https://github.com/unctad-ai/create-ai-assisted-project/commit/d4646ff42e4639ea5ac8524f69f4d611d99973b6))
+* remove redundant comment about .gitignore in createProject function ([448239e](https://github.com/unctad-ai/create-ai-assisted-project/commit/448239edd3015b5b77690d8056227a2462869ed6))
+* remove Unsplash placeholder images from AI Assistant templates ([9554afa](https://github.com/unctad-ai/create-ai-assisted-project/commit/9554afa644fc8ac1a3b35548b53a4c0e5c39a78b))
+
 ### [0.1.8](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.7...v0.1.8) (2025-04-04)
 
 

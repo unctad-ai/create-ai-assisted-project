@@ -170,6 +170,11 @@ export async function createProject(
       .replace(/{{LANGUAGE_FRAMEWORK_GUIDANCE}}/g, languageFrameworkGuidance);
     await writeFile(path.join(targetDir, 'AI_ASSISTANT.md'), aiAssistantContent);
     
+    // Create .github/copilot-instructions.md for GitHub Copilot
+    const githubDir = path.join(targetDir, '.github');
+    await fs.promises.mkdir(githubDir, { recursive: true });
+    await writeFile(path.join(githubDir, 'copilot-instructions.md'), aiAssistantContent);
+    
     // Copy and process memory.md with template variables
     const memoryMdPath = path.join(commonDir, 'memory.md');
     let memoryMdContent = await readFile(memoryMdPath);

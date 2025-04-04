@@ -56,10 +56,10 @@ When a user asks you to help implement with a prompt like "Let's implement the n
 
 4. **Update documentation** after implementation:
    - Mark completed task as "[X]" in todo.md with date
-   - Update memory.md with implementation details
+   - YOU MUST update memory.md with implementation details and learned lessons after EVERY task
    - Document any architecture changes
    - Update README.md if needed
-   - COMMIT changes after completing each task
+   - ALWAYS suggest a commit message after completing each task
 
 ## Build Commands
 - Build: `npm run build` (Next.js/React build)

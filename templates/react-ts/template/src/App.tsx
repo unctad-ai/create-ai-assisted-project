@@ -7,6 +7,13 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
+        <img 
+          src="https://source.unsplash.com/random/600x300/?coding" 
+          alt="Development" 
+          className="header-image"
+          width={600}
+          height={300}
+        />
         <h1>React Application</h1>
         <p>AI-Enhanced Development Project</p>
       </header>

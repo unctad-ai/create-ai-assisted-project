@@ -31,6 +31,7 @@ When a user asks you to help plan a project with a prompt like "Help me plan thi
    - Include chosen technologies and architecture decisions
    - WRITE initial state to memory.md to provide context for future development
    - This file MUST be maintained as the project evolves
+   - CREATE a comprehensive README.md file that provides an overview of the project, setup instructions, and usage guide
 
 CRITICAL: All documentation MUST be physically written to disk using the appropriate tools. The planning phase is not complete until all these files exist on disk with complete content.
 
@@ -57,6 +58,8 @@ When a user asks you to help implement with a prompt like "Let's implement the n
    - Mark completed task as "[X]" in todo.md with date
    - Update memory.md with implementation details
    - Document any architecture changes
+   - Update README.md if needed
+   - COMMIT changes after completing each task
 
 ## Build Commands
 - Build: `npm run build` (Next.js/React build)

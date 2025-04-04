@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.7...v0.1.8) (2025-04-04)
+
+
+### Features
+
+* add GitHub Copilot instructions file generation ([a326532](https://github.com/unctad-ai/create-ai-assisted-project/commit/a32653204835680b31658d772104bf02d3dbc412))
+* add Unsplash integration for placeholder images in guidelines and templates ([c52e7ea](https://github.com/unctad-ai/create-ai-assisted-project/commit/c52e7ea8e1915d77ee1bafee39fb7e0022e5f627))
+
+
+### Code Refactoring
+
+* remove README.md files from expected project structure and update AI Assistant guidelines ([92cc03b](https://github.com/unctad-ai/create-ai-assisted-project/commit/92cc03b4a2758836995538fc3de37557d296cfcc))
+
 ### [0.1.7](https://github.com/unctad-ai/create-ai-assisted-project/compare/v0.1.6...v0.1.7) (2025-04-04)
 
 

@@ -78,6 +78,5 @@ When a user asks you to help implement with a prompt like "Let's implement the n
 - Error handling with informative messages and proper try/catch
 - Zero tolerance for TS/lint warnings
 - Use shadcn/ui components with Tailwind CSS
-- Use Unsplash for placeholder images (https://source.unsplash.com/random/[dimensions]/?[search-term])
 
 {{LANGUAGE_FRAMEWORK_GUIDANCE}}

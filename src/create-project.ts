@@ -27,7 +27,7 @@ export async function createProject(
 
     // Create project structure folder README files
     if (options.template.includes('react') || options.template.includes('next')) {
-      // Create standard folders with README files for better organization
+      // Create standard folders for better organization
       const projectFolders = [
         { path: 'src/components', desc: 'React components used across the application' },
         { path: 'src/lib', desc: 'Utility functions and shared code' },
@@ -43,11 +43,7 @@ export async function createProject(
         const folderPath = path.join(targetDir, folder.path);
         await fs.promises.mkdir(folderPath, { recursive: true });
         
-        // Add README for each folder
-        await writeFile(
-          path.join(folderPath, 'README.md'),
-          `# ${folder.path.split('/').pop()}\n\n${folder.desc}\n`
-        );
+        // README files are removed as they're unnecessary
       }
       
       // Add shadcn-ui setup later during install process

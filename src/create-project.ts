@@ -193,7 +193,6 @@ export async function createProject(
     // Initialize git repository (always)
     spinner.text = 'Initializing git repository...';
     execSync('git init', { cwd: targetDir, stdio: 'ignore' });
-    // The .gitignore file is already included in the templates, no need to create it again
 
     // Install dependencies
     if (options.install) {

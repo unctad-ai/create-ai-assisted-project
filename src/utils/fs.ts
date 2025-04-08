@@ -1,5 +1,5 @@
-import fs from 'fs/promises';
-import path from 'path';
+import * as fs from "fs/promises";
+import path from "path";
 
 /**
  * Recursively copy a directory
@@ -39,14 +39,14 @@ export async function writeFile(
   content: string
 ): Promise<void> {
   await ensureDir(path.dirname(filePath));
-  await fs.writeFile(filePath, content, 'utf-8');
+  await fs.writeFile(filePath, content, "utf-8");
 }
 
 /**
  * Read a file's content
  */
 export async function readFile(filePath: string): Promise<string> {
-  return fs.readFile(filePath, 'utf-8');
+  return fs.readFile(filePath, "utf-8");
 }
 
 /**

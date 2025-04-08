@@ -66,11 +66,20 @@ export class ResponseProcessor {
    */
   private extractFileBlocks(rawResponse: string): AIFile[] {
     const files: AIFile[] = [];
-    const fileBlockRegex =
-      /```(?:file|filepath):(.+?)\n([\s\S]*?)```/g;
 
+    // Handle format: ```file:path\ncontent```
+    const fileBlockRegex1 = /```(?:file|filepath):(.+?)\n([\s\S]*?)```/g;
     let match;
-    while ((match = fileBlockRegex.exec(rawResponse)) !== null) {
+    while ((match = fileBlockRegex1.exec(rawResponse)) !== null) {
+      files.push({
+        path: match[1].trim(),
+        content: match[2].trim(),
+      });
+    }
+
+    // Handle format: ```file path```\n```language\ncontent```
+    const fileBlockRegex2 = /```(?:file|filepath) (.+?)```\s*```(?:[\w-]+)?\s*([\s\S]*?)```/g;
+    while ((match = fileBlockRegex2.exec(rawResponse)) !== null) {
       files.push({
         path: match[1].trim(),
         content: match[2].trim(),
@@ -114,10 +123,15 @@ export class ResponseProcessor {
   private cleanContent(rawResponse: string, files: AIFile[]): string {
     let content = rawResponse;
 
-    // Remove file blocks
-    const fileBlockRegex =
+    // Remove file blocks - format 1: ```file:path\ncontent```
+    const fileBlockRegex1 =
       /```(?:file|filepath):.+?\n[\s\S]*?```/g;
-    content = content.replace(fileBlockRegex, "");
+    content = content.replace(fileBlockRegex1, "");
+
+    // Remove file blocks - format 2: ```file path```\n```language\ncontent```
+    const fileBlockRegex2 =
+      /```(?:file|filepath) .+?```\s*```(?:[\w-]+)?\s*[\s\S]*?```/g;
+    content = content.replace(fileBlockRegex2, "");
 
     // Remove suggestions section
     const suggestionsRegex =

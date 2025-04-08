@@ -123,25 +123,33 @@ Please review these files following the guidelines in AI_ASSISTANT.md.
     type: "planning" | "implementation" | "review"
   ): Promise<string> {
     try {
-      const templatePath = path.join(
-        this.projectRoot,
-        "project-docs",
-        "process",
-        "AI_PROMPT_TEMPLATE.md"
-      );
-      const content = await fs.readFile(templatePath, "utf-8");
-
-      // Extract the relevant section based on type
-      if (type === "planning") {
-        return this.extractSection(content, "Planning Phase Prompt");
-      } else if (type === "implementation") {
-        return this.extractSection(content, "Implementation Phase Prompt");
-      } else {
-        return this.extractSection(content, "Review Prompt");
-      }
+      // Try to read from the specific template file first
+      const templateFileName = `${type.toUpperCase()}_PROMPT.md`;
+      const templatePath = path.join(this.projectRoot, templateFileName);
+      return await fs.readFile(templatePath, "utf-8");
     } catch (error) {
-      console.warn(`Prompt template not found for ${type}, using default`);
-      return `Let's work on this ${type} task together.`;
+      try {
+        // Fall back to the combined template file
+        const templatePath = path.join(
+          this.projectRoot,
+          "project-docs",
+          "process",
+          "AI_PROMPT_TEMPLATE.md"
+        );
+        const content = await fs.readFile(templatePath, "utf-8");
+
+        // Extract the relevant section based on type
+        if (type === "planning") {
+          return this.extractSection(content, "Planning Phase Prompt");
+        } else if (type === "implementation") {
+          return this.extractSection(content, "Implementation Phase Prompt");
+        } else {
+          return this.extractSection(content, "Review Prompt");
+        }
+      } catch (error) {
+        console.warn(`Prompt template not found for ${type}, using default`);
+        return `Let's work on this ${type} task together.`;
+      }
     }
   }
 
@@ -149,15 +157,23 @@ Please review these files following the guidelines in AI_ASSISTANT.md.
    * Extracts a section from a markdown document
    * @param content - Full markdown content
    * @param sectionTitle - Title of the section to extract
+   * @param defaultValue - Default value to return if section is not found
    * @returns Extracted section content
    */
-  private extractSection(content: string, sectionTitle: string): string {
+  private extractSection(
+    content: string,
+    sectionTitle: string,
+    defaultValue: string = "Let's work on this task together."
+  ): string {
+    // Try to match section with markdown heading format (## Section)
     const sectionRegex = new RegExp(
-      `### ${sectionTitle}\\s*\`\`\`\\s*([\\s\\S]*?)\\s*\`\`\``,
+      `## ${sectionTitle}\\s*([\\s\\S]*?)(?:\\s*##|$)`,
       "i"
     );
     const match = content.match(sectionRegex);
-    return match ? match[1].trim() : `Let's work on this task together.`;
+    
+    // If found, return the content, otherwise return the default value
+    return match ? match[1].trim() : defaultValue;
   }
 
   /**

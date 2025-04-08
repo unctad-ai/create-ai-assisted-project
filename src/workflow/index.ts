@@ -98,7 +98,7 @@ export class WorkflowManager {
     context.projectState.phase = "development";
     await this.contextManager.save(context);
 
-    // Use AI to implement the task
+    // Use AI to implement the task - pass the task ID as expected by the interface
     const response = await this.aiManager.implementTask(taskId);
 
     // Record changes
@@ -121,7 +121,10 @@ export class WorkflowManager {
     }
 
     // Update task status to completed
-    await this.taskManager.updateTaskStatus(taskId, "completed");
+    const updatedTask = await this.taskManager.updateTaskStatus(taskId, "completed") || {
+      ...task,
+      status: "completed"
+    };
 
     // Update session state
     this.sessionState.currentTask = undefined;
@@ -137,7 +140,7 @@ export class WorkflowManager {
     });
     await this.contextManager.save(context);
 
-    // Update memory with changes
+    // Update memory with changes - pass the changes array as expected by the interface
     await this.docGenerator.updateMemory(context.recentChanges);
   }
 
@@ -145,17 +148,22 @@ export class WorkflowManager {
    * Reviews changes in the project
    */
   async reviewChanges(): Promise<void> {
-    // Get list of changed files
+    // Load context first to get recent changes
+    const context = await this.contextManager.load();
+
+    // Get list of changed files from session state
     const changedFiles = this.sessionState.changes
       .filter((change) => change.type === "file")
       .map((change) => change.path);
 
     if (changedFiles.length === 0) {
       console.log("No changes to review");
+      // Still save context to maintain state
+      await this.contextManager.save(context);
       return;
     }
 
-    // Use AI to review the changes
+    // Use AI to review the changes - pass the file paths array as expected by the interface
     const response = await this.aiManager.reviewCode(changedFiles);
 
     // Update session state
@@ -163,7 +171,6 @@ export class WorkflowManager {
     this.addSessionChange("doc", "review", "Reviewed changes");
 
     // Update context
-    const context = await this.contextManager.load();
     context.projectState.phase = "review";
     context.recentChanges.unshift({
       timestamp: Date.now(),

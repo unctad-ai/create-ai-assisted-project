@@ -6,6 +6,7 @@ import ora from 'ora';
 import fs from 'fs';
 import type { ProjectOptions } from './types.js';
 import { copyDir, writeFile, readFile, pathExists } from './utils/fs.js';
+import { ContextManager } from './context/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +20,7 @@ export async function createProject(
 ): Promise<void> {
   const spinner = ora('Creating project...').start();
   const targetDir = path.resolve(process.cwd(), projectName);
-  
+
   try {
     // Copy template files
     const templateDir = path.resolve(__dirname, '../templates', options.template, 'template');
@@ -38,14 +39,14 @@ export async function createProject(
         { path: 'src/context', desc: 'React context providers' },
         { path: 'src/utils', desc: 'Utility functions' }
       ];
-      
+
       for (const folder of projectFolders) {
         const folderPath = path.join(targetDir, folder.path);
         await fs.promises.mkdir(folderPath, { recursive: true });
-        
+
         // README files are removed as they're unnecessary
       }
-      
+
       // Add shadcn-ui setup later during install process
     }
 
@@ -56,14 +57,14 @@ export async function createProject(
       const pkg = JSON.parse(pkgContent);
       pkg.name = projectName;
       await writeFile(pkgPath, JSON.stringify(pkg, null, 2));
-      
+
       // Update project name in App.tsx files
       if (options.template === 'react-ts') {
         const appFiles = [
           path.join(targetDir, 'src/App.tsx'),
           path.join(targetDir, 'src/presentation/components/App.tsx')
         ];
-        
+
         for (const appFile of appFiles) {
           if (await pathExists(appFile)) {
             const content = await readFile(appFile);
@@ -74,13 +75,13 @@ export async function createProject(
             await writeFile(appFile, updatedContent);
           }
         }
-        
+
         // Update test files
         const testFiles = [
           path.join(targetDir, 'src/App.test.tsx'),
           path.join(targetDir, 'src/presentation/components/App.test.tsx')
         ];
-        
+
         for (const testFile of testFiles) {
           if (await pathExists(testFile)) {
             const content = await readFile(testFile);
@@ -96,19 +97,24 @@ export async function createProject(
 
     // Copy common AI workflow files and documentation
     const commonDir = path.resolve(__dirname, '../templates/common');
-    
+
     // Copy project-docs directory
     const projectDocsDir = path.join(commonDir, 'project-docs');
     const targetProjectDocsDir = path.join(targetDir, 'project-docs');
     await copyDir(projectDocsDir, targetProjectDocsDir);
-    
+
+    // Copy .ai directory
+    const aiDir = path.join(commonDir, '.ai');
+    const targetAiDir = path.join(targetDir, '.ai');
+    await copyDir(aiDir, targetAiDir);
+
     // Get current date for templating
     const currentDate = new Date().toISOString().split('T')[0];
-    
+
     // Determine language and framework-specific content
     let technicalStack = "";
     let languageFrameworkGuidance = "";
-    
+
     // Set up language/framework specific content based on template
     if (options.template === 'react-ts') {
       technicalStack = "React, TypeScript, Vite, Tailwind CSS, shadcn/ui";
@@ -130,11 +136,11 @@ export async function createProject(
 - Format: \`npm run format\` (runs Prettier)
 
 ## Project Structure
-- src/components/ - React components 
+- src/components/ - React components
 - src/hooks/ - Custom React hooks
 - src/utils/ - Utility functions
 - src/types/ - TypeScript type definitions`;
-    } 
+    }
     else if (options.template === 'next-app') {
       technicalStack = "Next.js, React, TypeScript, Tailwind CSS, shadcn/ui";
       languageFrameworkGuidance = `## Next.js & TypeScript Guidelines
@@ -156,25 +162,25 @@ export async function createProject(
 - Format: \`npm run format\` (runs Prettier)
 
 ## Project Structure
-- src/app/ - Next.js App Router pages 
+- src/app/ - Next.js App Router pages
 - src/components/ - React components
 - src/lib/ - Utility functions & shared code
 - src/types/ - TypeScript type definitions`;
     }
     // More templates can be added here with their specific guidance
-    
+
     // Copy and process AI_ASSISTANT.md with template variables
     const aiAssistantPath = path.join(commonDir, 'AI_ASSISTANT.md');
     let aiAssistantContent = await readFile(aiAssistantPath);
     aiAssistantContent = aiAssistantContent
       .replace(/{{LANGUAGE_FRAMEWORK_GUIDANCE}}/g, languageFrameworkGuidance);
     await writeFile(path.join(targetDir, 'AI_ASSISTANT.md'), aiAssistantContent);
-    
+
     // Create .github/copilot-instructions.md for GitHub Copilot
     const githubDir = path.join(targetDir, '.github');
     await fs.promises.mkdir(githubDir, { recursive: true });
     await writeFile(path.join(githubDir, 'copilot-instructions.md'), aiAssistantContent);
-    
+
     // Copy and process memory.md with template variables
     const memoryMdPath = path.join(commonDir, 'memory.md');
     let memoryMdContent = await readFile(memoryMdPath);
@@ -182,7 +188,7 @@ export async function createProject(
       .replace(/{{PROJECT_NAME}}/g, projectName)
       .replace(/{{TECHNICAL_STACK}}/g, technicalStack || "To be determined");
     await writeFile(path.join(targetDir, 'memory.md'), memoryMdContent);
-    
+
     // Copy and process todo.md with template variables
     const todoMdPath = path.join(commonDir, 'todo.md');
     let todoMdContent = await readFile(todoMdPath);
@@ -199,14 +205,14 @@ export async function createProject(
       spinner.text = 'Installing dependencies...';
       const installCmd = getInstallCommand(options.packageManager);
       execSync(installCmd, { cwd: targetDir, stdio: 'ignore' });
-      
+
       // Install and setup shadcn-ui for React/Next.js projects
       if (options.template === 'react-ts' || options.template === 'next-app') {
         spinner.text = 'Setting up shadcn/ui...';
         const shadcnDeps = [
-          'tailwindcss', 
-          'postcss', 
-          'autoprefixer', 
+          'tailwindcss',
+          'postcss',
+          'autoprefixer',
           '@types/node',
           'tailwindcss-animate',
           'class-variance-authority',
@@ -217,14 +223,14 @@ export async function createProject(
           '@radix-ui/react-dropdown-menu',
           '@radix-ui/react-slot'
         ];
-        
-        const shadcnInstallCmd = `${options.packageManager === 'npm' ? 'npm install' : 
-          options.packageManager === 'yarn' ? 'yarn add' : 
-          options.packageManager === 'pnpm' ? 'pnpm add' : 
+
+        const shadcnInstallCmd = `${options.packageManager === 'npm' ? 'npm install' :
+          options.packageManager === 'yarn' ? 'yarn add' :
+          options.packageManager === 'pnpm' ? 'pnpm add' :
           'bun add'} ${shadcnDeps.join(' ')} --save`;
-          
+
         execSync(shadcnInstallCmd, { cwd: targetDir, stdio: 'ignore' });
-        
+
         // Create shadcn-ui configuration files
         await writeFile(
           path.join(targetDir, 'tailwind.config.js'),
@@ -302,7 +308,7 @@ module.exports = {
   plugins: [require("tailwindcss-animate")],
 }`
         );
-        
+
         await writeFile(
           path.join(targetDir, 'postcss.config.js'),
           `module.exports = {
@@ -312,19 +318,19 @@ module.exports = {
   },
 }`
         );
-        
+
         // Create shadcn/ui component utils
         await fs.promises.mkdir(path.join(targetDir, 'src/lib/utils'), { recursive: true });
         await writeFile(
           path.join(targetDir, 'src/lib/utils.ts'),
           `import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
- 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }`
         );
-        
+
         // Create basic UI components
         await fs.promises.mkdir(path.join(targetDir, 'src/components/ui'), { recursive: true });
         await writeFile(
@@ -386,78 +392,78 @@ Button.displayName = "Button"
 
 export { Button, buttonVariants }`
         );
-        
+
         // Create global.css with shadcn-ui variables
         await writeFile(
           path.join(targetDir, 'src/styles/globals.css'),
           `@tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
- 
+
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
- 
+
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
- 
+
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
- 
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
- 
+
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
- 
+
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
- 
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
- 
+
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
- 
+
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
- 
+
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
- 
+
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
- 
+
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
- 
+
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
- 
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -467,7 +473,7 @@ export { Button, buttonVariants }`
   }
 }`
         );
-        
+
         // Update main CSS import for the application
         if (options.template === 'react-ts') {
           // Update main.tsx to use the globals.css
@@ -484,17 +490,44 @@ export { Button, buttonVariants }`
       }
     }
 
+    // Initialize AI context
+    spinner.text = 'Initializing AI development context...';
+    const contextManager = new ContextManager(targetDir);
+    await contextManager.save({
+      currentTask: '',
+      projectState: {
+        phase: 'planning',
+        features: [],
+        progress: 0
+      },
+      recentChanges: [{
+        timestamp: Date.now(),
+        type: 'doc',
+        description: 'Project initialized'
+      }]
+    });
+
+    // Add AI scripts to package.json
+    const pkg = JSON.parse(await readFile(pkgPath));
+    pkg.scripts = {
+      ...pkg.scripts,
+      'ai:plan': 'node --experimental-specifier-resolution=node .ai/commands.js plan',
+      'ai:dev': 'node --experimental-specifier-resolution=node .ai/commands.js dev',
+      'ai:review': 'node --experimental-specifier-resolution=node .ai/commands.js review'
+    };
+    await writeFile(pkgPath, JSON.stringify(pkg, null, 2));
+
     spinner.succeed(chalk.green('Project created successfully!'));
-    
+
     console.log('\nNext steps:');
     console.log(chalk.cyan(`  cd ${projectName}`));
-    
+
     if (!options.install) {
       console.log(chalk.cyan(`  ${options.packageManager} install`));
     }
-    
+
     console.log(chalk.cyan('  npm run dev'));
-    
+
   } catch (error) {
     spinner.fail('Failed to create project');
     throw error;

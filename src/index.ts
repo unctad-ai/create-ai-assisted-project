@@ -9,8 +9,8 @@ import type { ProjectOptions } from './types.js';
 const program = new Command();
 
 program
-  .name('create-ai-project')
-  .description('Create a new project with AI-enhanced development workflow')
+  .name('create-ai-assisted-project')
+  .description('Create a new project with AI-assisted development toolkit')
   .version('1.0.0')
   .argument('[project-directory]', 'Project directory name')
   .option('--template <name>', 'Select project template')

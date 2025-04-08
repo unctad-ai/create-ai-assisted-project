@@ -1,6 +1,6 @@
-# AI Assistant Guidelines
+# AI-Assisted Development Toolkit - Assistant Guidelines
 
-This file provides guidance to AI coding assistants when working with code in this repository.
+This file provides guidance to AI coding assistants when working with the AI-Assisted Development Toolkit and projects created with it.
 
 ## Project Planning Process
 

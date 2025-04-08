@@ -1,6 +1,6 @@
-# AI-Enhanced Project Template
+# AI-Assisted Development Toolkit
 
-This repository provides a structured template for creating new software projects with built-in AI development workflow support. It's designed to streamline development using AI coding agents while maintaining high code quality and consistent practices.
+This toolkit provides a comprehensive set of tools and workflows for AI-assisted software development. It's designed to streamline development using AI coding agents while maintaining high code quality and consistent practices, enabling developers to leverage AI throughout the entire development lifecycle.
 
 ## Quick Start
 
@@ -42,43 +42,74 @@ npm install
 
 ### Step 2: Plan Your Project
 
-First, instruct your AI coding assistant to read the guidelines:
+You can use the built-in AI commands to start the planning process:
+
+```bash
+npm run ai:plan "Create a todo app with React"
+```
+
+This will update the memory.md file with your planning request and prepare the context for your AI assistant.
+
+Then, instruct your AI coding assistant to read the guidelines:
 
 ```
 Please read the AI_ASSISTANT.md file in this project to understand how to work with this codebase.
 ```
 
-Then, ask it to help plan your project:
+And continue with your planning request:
 
 ```
-Help me plan this project: [brief description of your project idea].
-
-Let's collaborate to define requirements, architecture, and create a task list.
+I've started planning a project to create a todo app with React. Let's collaborate to define requirements, architecture, and create a task list.
 ```
 
 The AI will guide you through creating project requirements, architecture, and tasks - writing all documentation directly to your project files in project-docs/ and creating your initial todo.md and memory.md files.
 
 ### Step 3: Implement
 
-For each development cycle, ask:
+For each development task, you can use the built-in AI commands to start the implementation process:
+
+```bash
+npm run ai:dev "task-1"
+```
+
+This will update the memory.md file with your implementation request and prepare the context for your AI assistant.
+
+Then, in your AI assistant chat, ask:
 
 ```
 Please read the AI_ASSISTANT.md file if you haven't already.
 
-Let's implement the next task for this project. Use the documentation in project-docs/
-and follow the implementation guidelines.
+I've started implementing task-1. Let's work on this task together following the implementation guidelines.
 ```
 
-The AI will consult your project documentation, select the next logical task, and guide you through implementation.
+The AI will consult your project documentation, retrieve the task details, and guide you through implementation.
 
-### Additional Commands
+### Step 4: Review
+
+When you're ready to review your code, you can use the built-in AI command:
+
+```bash
+npm run ai:review
+```
+
+This will update the memory.md file with your review request and prepare the context for your AI assistant.
+
+Then, in your AI assistant chat, ask:
+
+```
+Please review the code we've implemented so far and suggest any improvements.
+```
+
+The AI will analyze your codebase and provide feedback and suggestions for improvement.
+
+### Additional AI Prompts
 
 - **Implement specific task:**
   ```
   Let's implement: [specific task from todo.md]
   ```
 
-- **Review code:**
+- **Review specific code:**
   ```
   Review this implementation: [component/feature]
   ```
@@ -129,12 +160,12 @@ Options:
   -V, --version                      Output version
   --template <n>                     Select project template
     [next-app, react-ts]
-  
+
   --install                          Install dependencies (default: true)
-  
+
   --pm <package-manager>             Choose package manager
     [npm, yarn, pnpm, bun]
-  
+
   -h, --help                         Display help
 
 Examples:

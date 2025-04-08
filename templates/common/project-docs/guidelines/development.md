@@ -12,7 +12,6 @@ This document provides essential rules for AI-assisted development. For complete
 - Document public APIs and complex logic
 - Keep functions small and focused
 - Follow the project's architectural patterns
-- Use Unsplash for placeholder images (https://source.unsplash.com/random/[dimensions]/?[search-term])
 
 ## Test-Driven Development Process
 

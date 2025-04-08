@@ -2,9 +2,19 @@
 
 This file provides guidance to AI coding assistants when working with code in this repository.
 
+## AI Command Integration
+
+This project includes built-in AI commands to streamline the development workflow:
+
+- `npm run ai:plan [description]` - Start planning a project
+- `npm run ai:dev [taskId]` - Start implementing a task
+- `npm run ai:review` - Start reviewing code
+
+These commands update the memory.md file with the command execution and prepare the context for AI interactions.
+
 ## Project Planning Process
 
-When a user asks you to help plan a project with a prompt like "Help me plan this project: [description]", follow this structured approach:
+When a user runs `npm run ai:plan "[description]"` and then asks you to help plan a project, follow this structured approach:
 
 1. First, guide the creation of a **Project Brief**:
    - Extract key requirements from the user's description
@@ -37,7 +47,7 @@ CRITICAL: All documentation MUST be physically written to disk using the appropr
 
 ## Implementation Process
 
-When a user asks you to help implement with a prompt like "Let's implement the next task" or similar:
+When a user runs `npm run ai:dev "[taskId]"` and then asks you to help implement a task, or when they ask you to help implement with a prompt like "Let's implement the next task" or similar:
 
 1. First, **check project documentation**:
    - Read memory.md to understand current project state
@@ -61,12 +71,40 @@ When a user asks you to help implement with a prompt like "Let's implement the n
    - Update README.md if needed
    - ALWAYS suggest a commit message after completing each task
 
+## Review Process
+
+When a user runs `npm run ai:review` and then asks you to review the code, follow this structured approach:
+
+1. First, **check project documentation**:
+   - Read memory.md to understand current project state
+   - Review todo.md for completed tasks
+   - Consult project-docs/ for architecture and guidelines
+
+2. Then, **review the codebase**:
+   - Check code quality and adherence to standards
+   - Identify potential bugs or issues
+   - Suggest improvements and optimizations
+   - Ensure tests cover all functionality
+
+3. **Provide feedback**:
+   - Summarize findings and recommendations
+   - Prioritize issues by severity
+   - Suggest specific code changes
+   - Recommend next steps
+
+4. **Update documentation**:
+   - Update memory.md with review findings
+   - Suggest updates to technical documentation if needed
+
 ## Build Commands
 - Build: `npm run build` (Next.js/React build)
 - Dev: `npm run dev` (starts development server)
 - Test: `npm test` (runs test suite)
 - Lint: `npm run lint` (runs ESLint)
 - Format: `npm run format` (runs Prettier)
+- AI Plan: `npm run ai:plan [description]` (starts planning process)
+- AI Dev: `npm run ai:dev [taskId]` (starts implementation process)
+- AI Review: `npm run ai:review` (starts review process)
 
 ## Code Style
 - TypeScript with strict typing is mandatory
